@@ -9,9 +9,10 @@ except Exception as e:
     print("Error {}".format(e))
 
 
-def hello_world_execute():
-    print("hello world!")
-    return "hello world!"
+def hello_world_execute(*args, **kwargs):
+    variable = kwargs.get("name", "NO NAME")
+
+    return "hello world " + variable
 
 
 with DAG(
@@ -28,4 +29,5 @@ with DAG(
     hello_world_execute = PythonOperator(
         task_id="hello_world_execute_task",
         python_callable=hello_world_execute,
+        op_kwargs={"name": "Sakthivel"},
     )
