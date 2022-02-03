@@ -15,7 +15,7 @@ def hello_world_execute():
 
 
 with DAG(
-        dag_id="hello_world",
+        dag_id="hello_world_dag",
         schedule_interval="@daily",
         default_args={
             "owner": "airflow",
@@ -26,6 +26,6 @@ with DAG(
         catchup=False,
 ) as f:
     hello_world_execute = PythonOperator(
-        task_id="hello_world_execute_task_id",
+        task_id="hello_world_execute_task",
         python_callable=hello_world_execute,
     )
